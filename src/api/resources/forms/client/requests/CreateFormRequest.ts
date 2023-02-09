@@ -4,7 +4,7 @@
 
 import { Typeform } from "@fern-api/typeform";
 
-export interface CreateThemeRequest {
+export interface CreateFormRequest {
     title: string;
     settings?: Typeform.forms.FormSettings;
     theme?: string;

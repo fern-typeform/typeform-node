@@ -90,14 +90,14 @@ export class Client {
      *   - `logic`: Array of Logic Jump objects to use in the form.
      * Expand the schema below for details about each of these elements. For optional elements, if you don't send a value and the element doesn't have a default value, no attribute will be returned. Any images you want to use in your form must already exist in your Typeform account. If you try to create a form that includes an image that isn't already in your Typeform account, the response will include an "IMAGE_NOT_FOUND" error. Use the [POST https://api.typeform.com/images](/create/reference/create-image) endpoint to add images to your account. **NOTE:** It is not possible to inject third-party content into a typeform using the Create API.
      */
-    public async create(request: Typeform.forms.CreateThemeRequest): Promise<void> {
+    public async create(request: Typeform.forms.CreateFormRequest): Promise<void> {
         const _response = await core.fetcher({
             url: urlJoin(this.options.environment ?? environments.TypeformEnvironment.Production, "/forms"),
             method: "POST",
             headers: {
                 Authorization: core.BearerToken.toAuthorizationHeader(await core.Supplier.get(this.options.token)),
             },
-            body: await serializers.forms.CreateThemeRequest.jsonOrThrow(request),
+            body: await serializers.forms.CreateFormRequest.jsonOrThrow(request),
         });
         if (_response.ok) {
             return;

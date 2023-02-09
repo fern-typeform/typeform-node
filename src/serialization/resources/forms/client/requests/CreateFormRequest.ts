@@ -6,9 +6,9 @@ import * as serializers from "../../../..";
 import { Typeform } from "@fern-api/typeform";
 import * as core from "../../../../../core";
 
-export const CreateThemeRequest: core.serialization.Schema<
-    serializers.forms.CreateThemeRequest.Raw,
-    Typeform.forms.CreateThemeRequest
+export const CreateFormRequest: core.serialization.Schema<
+    serializers.forms.CreateFormRequest.Raw,
+    Typeform.forms.CreateFormRequest
 > = core.serialization.object({
     title: core.serialization.string(),
     settings: core.serialization.lazyObject(async () => (await import("../../../..")).forms.FormSettings).optional(),
@@ -33,7 +33,7 @@ export const CreateThemeRequest: core.serialization.Schema<
         .optional(),
 });
 
-export declare namespace CreateThemeRequest {
+export declare namespace CreateFormRequest {
     interface Raw {
         title: string;
         settings?: serializers.forms.FormSettings.Raw | null;
