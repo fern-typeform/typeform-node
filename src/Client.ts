@@ -4,25 +4,21 @@
 
 import * as environments from "./environments";
 import * as core from "./core";
-import { Client as ResponsesClient } from "./api/resources/responses/client/Client";
 import { Client as AccountsClient } from "./api/resources/accounts/client/Client";
 import { Client as FormsClient } from "./api/resources/forms/client/Client";
+import { Client as ResponsesClient } from "./api/resources/responses/client/Client";
+import { Client as ThemesClient } from "./api/resources/themes/client/Client";
+import { Client as WebhooksClient } from "./api/resources/webhooks/client/Client";
 
 export declare namespace TypeformClient {
     interface Options {
-        environment: environments.TypeformEnvironment | string;
-        apiKey?: core.Supplier<string>;
+        environment?: environments.TypeformEnvironment | string;
+        token?: core.Supplier<core.BearerToken>;
     }
 }
 
 export class TypeformClient {
     constructor(private readonly options: TypeformClient.Options) {}
-
-    #responses: ResponsesClient | undefined;
-
-    public get responses(): ResponsesClient {
-        return (this.#responses ??= new ResponsesClient(this.options));
-    }
 
     #accounts: AccountsClient | undefined;
 
@@ -34,5 +30,23 @@ export class TypeformClient {
 
     public get forms(): FormsClient {
         return (this.#forms ??= new FormsClient(this.options));
+    }
+
+    #responses: ResponsesClient | undefined;
+
+    public get responses(): ResponsesClient {
+        return (this.#responses ??= new ResponsesClient(this.options));
+    }
+
+    #themes: ThemesClient | undefined;
+
+    public get themes(): ThemesClient {
+        return (this.#themes ??= new ThemesClient(this.options));
+    }
+
+    #webhooks: WebhooksClient | undefined;
+
+    public get webhooks(): WebhooksClient {
+        return (this.#webhooks ??= new WebhooksClient(this.options));
     }
 }

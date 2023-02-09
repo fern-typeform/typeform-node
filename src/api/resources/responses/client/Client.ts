@@ -10,8 +10,8 @@ import * as errors from "../../../../errors";
 
 export declare namespace Client {
     interface Options {
-        environment: environments.TypeformEnvironment | string;
-        apiKey?: core.Supplier<string>;
+        environment?: environments.TypeformEnvironment | string;
+        token?: core.Supplier<core.BearerToken>;
     }
 }
 
@@ -21,7 +21,7 @@ export class Client {
     /**
      * Returns form responses and date and time of form landing and submission.
      */
-    public async getFormById(formId: string, request: Typeform.GetFormByIdRequest = {}): Promise<void> {
+    public async list(formId: string, request: Typeform.ListReponsesRequest = {}): Promise<void> {
         const { pageSize, since, until, after, before, includedResponseIds, completed, sort, query } = request;
         const _queryParams = new URLSearchParams();
         if (pageSize != null) {
@@ -61,10 +61,13 @@ export class Client {
         }
 
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment, `/forms/${formId}/responses/`),
+            url: urlJoin(
+                this.options.environment ?? environments.TypeformEnvironment.Production,
+                `/forms/${formId}/responses/`
+            ),
             method: "GET",
             headers: {
-                api_key: await core.Supplier.get(this.options.apiKey),
+                Authorization: core.BearerToken.toAuthorizationHeader(await core.Supplier.get(this.options.token)),
             },
             queryParameters: _queryParams,
         });
@@ -97,15 +100,18 @@ export class Client {
     /**
      * Delete responses to a form. You must specify the `included_tokens` parameter.
      */
-    public async deleteResponses(formId: string, request: Typeform.DeleteResponsesRequest): Promise<void> {
+    public async delete(formId: string, request: Typeform.DeleteReponseRequest): Promise<void> {
         const { includedTokens } = request;
         const _queryParams = new URLSearchParams();
         _queryParams.append("included_tokens", includedTokens);
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment, `/forms/${formId}/responses/`),
+            url: urlJoin(
+                this.options.environment ?? environments.TypeformEnvironment.Production,
+                `/forms/${formId}/responses/`
+            ),
             method: "DELETE",
             headers: {
-                api_key: await core.Supplier.get(this.options.apiKey),
+                Authorization: core.BearerToken.toAuthorizationHeader(await core.Supplier.get(this.options.token)),
             },
             queryParameters: _queryParams,
         });
@@ -138,20 +144,15 @@ export class Client {
     /**
      * Retrieves a file uploaded as an answer for a submission
      */
-    public async retrieveResponseFile(
-        formId: string,
-        responseId: string,
-        fieldId: string,
-        filename: string
-    ): Promise<void> {
+    public async get(formId: string, responseId: string, fieldId: string, filename: string): Promise<void> {
         const _response = await core.fetcher({
             url: urlJoin(
-                this.options.environment,
+                this.options.environment ?? environments.TypeformEnvironment.Production,
                 `/forms/${formId}/responses//${responseId}/fields/${fieldId}/files/${filename}`
             ),
             method: "GET",
             headers: {
-                api_key: await core.Supplier.get(this.options.apiKey),
+                Authorization: core.BearerToken.toAuthorizationHeader(await core.Supplier.get(this.options.token)),
             },
         });
         if (_response.ok) {

@@ -3,7 +3,7 @@
  */
 
 export const TypeformEnvironment = {
-    Production: "https://api.typeform.com/",
+    Production: "https://api.typeform.com",
 } as const;
 
 export type TypeformEnvironment = typeof TypeformEnvironment.Production;

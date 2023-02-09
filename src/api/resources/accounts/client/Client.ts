@@ -9,8 +9,8 @@ import * as errors from "../../../../errors";
 
 export declare namespace Client {
     interface Options {
-        environment: environments.TypeformEnvironment | string;
-        apiKey?: core.Supplier<string>;
+        environment?: environments.TypeformEnvironment | string;
+        token?: core.Supplier<core.BearerToken>;
     }
 }
 
@@ -20,12 +20,12 @@ export class Client {
     /**
      * Retrieve your own account information.
      */
-    public async retrieveYourOwnAccount(): Promise<void> {
+    public async get(): Promise<void> {
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment, "/me"),
+            url: urlJoin(this.options.environment ?? environments.TypeformEnvironment.Production, "/me"),
             method: "GET",
             headers: {
-                api_key: await core.Supplier.get(this.options.apiKey),
+                Authorization: core.BearerToken.toAuthorizationHeader(await core.Supplier.get(this.options.token)),
             },
         });
         if (_response.ok) {

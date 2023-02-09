@@ -1,2 +1,2 @@
-export { GetFormByIdRequest } from "./GetFormByIdRequest";
-export { DeleteResponsesRequest } from "./DeleteResponsesRequest";
+export { ListReponsesRequest } from "./ListReponsesRequest";
+export { DeleteReponseRequest } from "./DeleteReponseRequest";

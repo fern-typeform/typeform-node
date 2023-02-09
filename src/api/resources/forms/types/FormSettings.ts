@@ -5,16 +5,16 @@
 import { Typeform } from "@fern-api/typeform";
 
 export interface FormSettings {
-    language?: string;
+    language?: Typeform.forms.Language;
     /** true if your form is public. Otherwise, false (your form is private). */
     isPublic?: boolean;
     /** Basis for the progress bar displayed on the screen. Choose "proportion" to show the number of questions answered so far. Choose "percentage" to show the percentage of questions answered so far. */
-    progressBar?: string;
+    progressBar?: Typeform.forms.ProgressBarType;
     /** true to display progress bar on the typeform. Otherwise, false. */
     showProgressBar?: boolean;
     /** true to display Typeform brand on the typeform. false to hide Typeform branding on the typeform. Hiding Typeform branding is available for [Premium accounts](https://help.typeform.com/hc/en-us/articles/360030829332). */
     showTypeformBranding?: boolean;
-    meta?: Typeform.FormMeta;
+    meta?: Typeform.forms.FormMetadata;
     /** URL where the typeform should redirect upon submission. */
     redirectAfterSubmitUrl?: string;
     /** Google Analytics tracking ID to use for the form. */
@@ -23,5 +23,5 @@ export interface FormSettings {
     facebookPixel?: string;
     /** Google Tag Manager ID to use for the form. */
     googleTagManager?: string;
-    notifications?: Typeform.Notifications;
+    notifications?: Typeform.forms.FormNotificationSettings;
 }
