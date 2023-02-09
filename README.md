@@ -1,4 +1,4 @@
-# Typedream Node Library
+# Typeform Node Library
 
 [![npm shield](https://img.shields.io/npm/v/@fern-api/typeform)](https://www.npmjs.com/package/@fern-api/typeform)
 
