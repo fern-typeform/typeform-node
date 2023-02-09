@@ -1,8 +1,8 @@
 # Typedream Node Library
 
-[![npm shield](https://img.shields.io/npm/v/@fern-api/typedream)](https://www.npmjs.com/package/@fern-api/typedream)
+[![npm shield](https://img.shields.io/npm/v/@fern-api/typeform)](https://www.npmjs.com/package/@fern-api/typeform)
 
-The {Company} Node.js library provides access to the Typedream API from JavaScript/TypeScript.
+The Typeform Node.js library provides access to the Typeform API from JavaScript/TypeScript.
 
 ## Documentation
 
