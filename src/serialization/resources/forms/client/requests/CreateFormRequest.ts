@@ -11,10 +11,12 @@ export const CreateFormRequest: core.serialization.Schema<
     Typeform.CreateFormRequest
 > = core.serialization.object({
     title: core.serialization.string().optional(),
+    settings: core.serialization.lazyObject(async () => (await import("../../../..")).FormSettings).optional(),
 });
 
 export declare namespace CreateFormRequest {
     interface Raw {
         title?: string | null;
+        settings?: serializers.FormSettings.Raw | null;
     }
 }

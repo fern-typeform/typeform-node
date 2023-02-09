@@ -4,7 +4,6 @@
 
 import { Typeform } from "@fern-api/typeform";
 
-export interface CreateFormRequest {
-    title?: string;
-    settings?: Typeform.FormSettings;
+export interface Notifications {
+    self?: Typeform.NotificationsSelf;
 }
