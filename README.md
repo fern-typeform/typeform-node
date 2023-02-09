@@ -16,10 +16,25 @@ API reference documentation is available [here](https://www.typeform.com/develop
 import { TypeformClient, TypeformEnvironment } from '@fern-api/typeform';
 
 const client = new TypeformClient({
-  environment: TypeformEnvironment.Production
+  environment: TypeformEnvironment.Production,
 });
 
-const response = await client.responses.getFormById("my-form-id");
+const response = await client.forms.createForm({
+  title: 'favorite-plant-survey',
+  settings: {
+    language: 'en',
+    isPublic: false,
+    showProgressBar: true,
+    showTypeformBranding: false,
+    meta: {
+      allowIndexing: true,
+      description: 'Vote for your favorite type of plant!',
+      image: {
+        href: 'https://fern-image-hosting.s3.amazonaws.com/three-plants.jpeg',
+      },
+    },
+  },
+});
 
 console.log('Received response from Typeform!', response);
 ```
