@@ -10,7 +10,7 @@ API reference documentation is available [here](https://www.typeform.com/develop
 
 ## Usage
 
-[![Try it out](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/typescript-example-using-sdk-built-with-fern-hptevw?file=app.ts&view=editor)
+[![Try it out](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/typescript-example-using-sdk-built-with-fern-mbp8ue?file=package.json,app.ts,node_modules%2F%40fern-api%2Ftypeform%2Ftypes%2Fapi%2Fresources%2Fforms%2Fclient%2FClient.d.ts,node_modules%2F%40fern-api%2Ftypeform%2Ftypes%2Fapi%2Fresources%2Fforms%2Fclient%2Frequests%2FCreateThemeRequest.d.ts,node_modules%2F%40fern-api%2Ftypeform%2Ftypes%2Fapi%2Fresources%2Fforms%2Ftypes%2FFormSettings.d.ts&view=editor)
 
 ```typescript
 import { TypeformClient, TypeformEnvironment } from '@fern-api/typeform';
